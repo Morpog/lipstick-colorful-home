@@ -59,6 +59,7 @@ PageStackWindow {
             Image {
                 source: wallpaperSource.value
                 opacity: 0.5
+                }
                 Pager {
                     id: pager
 
@@ -87,7 +88,7 @@ PageStackWindow {
                 // Initial view should be the AppLauncher
                 currentIndex: 1
             }
-            }
+
             Lockscreen {
                 id: lockScreen
 
