@@ -56,33 +56,36 @@ PageStackWindow {
             anchors.fill: parent
 
             // Pager for swiping between different pages of the home screen
-            Pager {
-                id: pager
+            Image {
+                source: wallpaperSource.value
+                Pager {
+                    id: pager
 
-                scale: 0.7 + 0.3 * lockScreen.openingState
-                opacity: lockScreen.openingState
+                    scale: 0.7 + 0.3 * lockScreen.openingState
+                    opacity: lockScreen.openingState
 
-                anchors.fill: parent
+                    anchors.fill: parent
 
-                model: VisualItemModel {
-                    FeedsPage {
+                    model: VisualItemModel {
+                        FeedsPage {
                         width: pager.width
                         height: pager.height
+                        }
+                        AppLauncher {
+                            id: launcher
+                            height: pager.height
+                        }
+                        AppSwitcher {
+                            id: switcher
+                            width: pager.width
+                            height: pager.height
+                            visibleInHome: x > -width && x < desktop.width
+                        }
                     }
-                    AppLauncher {
-                        id: launcher
-                        height: pager.height
-                    }
-                    AppSwitcher {
-                        id: switcher
-                        width: pager.width
-                        height: pager.height
-                        visibleInHome: x > -width && x < desktop.width
-                    }
-                }
 
                 // Initial view should be the AppLauncher
                 currentIndex: 1
+            }
             }
             Lockscreen {
                 id: lockScreen
