@@ -23,7 +23,6 @@
 // Copyright (c) 2012, Timur Kristóf <venemo@fedoraproject.org>
 
 import QtQuick 2.0
-import QtGraphicalEffects 1.0
 
 import org.nemomobile.lipstick 0.1
 import org.nemomobile.configuration 1.0
@@ -58,18 +57,7 @@ PageStackWindow {
 
             // Pager for swiping between different pages of the home screen
             Image {
-                id: blurit
-                source: wallpaperSource.value
-                opacity: 0.5
-                smooth: true
-                visible: false
-                    }
-
-                    FastBlur {
-                        anchors.fill: blurit
-                        source: bug
-                        radius: 32
-                    }
+                source: "file:///usr/share/themes/glacier/meegotouch/icons/wallpaper-portrait-flower2.jpg"
                 }
                 Pager {
                     id: pager
