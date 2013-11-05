@@ -58,6 +58,7 @@ PageStackWindow {
             // Pager for swiping between different pages of the home screen
             Image {
                 source: wallpaperSource.value
+                opacity: 0.5
                 Pager {
                     id: pager
 
