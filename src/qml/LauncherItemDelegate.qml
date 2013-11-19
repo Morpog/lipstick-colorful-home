@@ -25,6 +25,8 @@
 
 import QtQuick 2.0
 import com.nokia.meego 2.0
+import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 Item {
     id: wrapper
@@ -154,13 +156,10 @@ Item {
                 }
             }
 
-            BusyIndicator {
+            Spinner {
+			id: spinner
                 anchors.centerIn: parent
-                opacity: model.object.isLaunching ? 1.0 : 0.0
-                running: model.object.isLaunching
-                platformStyle: BusyIndicatorStyle {
-                    size: "large"
-                }
+               	enabled: model.object.isLaunching
             }
         }
 
