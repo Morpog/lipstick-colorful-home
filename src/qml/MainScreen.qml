@@ -23,6 +23,7 @@
 // Copyright (c) 2012, Timur Kristóf <venemo@fedoraproject.org>
 
 import QtQuick 2.0
+import QtQuick.Window 2.1
 
 import org.nemomobile.lipstick 0.1
 import org.nemomobile.configuration 1.0
@@ -51,13 +52,49 @@ PageStackWindow {
     initialPage: Page {
         Item {
             id: desktop
-            property bool isPortrait: width < height
-
+            property int orientationAngle : Screen.angleBetween(Screen.primaryOrientation,Screen.orientation)
             anchors.fill: parent
 
             // Pager for swiping between different pages of the home screen
             Pager {
                 id: pager
+                property bool isPortrait: (orientationAngle == 90 || orientationAngle == 270)
+                    transform: Rotation {
+                        origin.x: { switch(orientationAngle) {
+                                  case 180:
+                                  case 270:
+                                      return notificationWindow.width / 2
+                                  case 90:
+                                      return notificationWindow.height / 2
+                                  default:
+                                      return 0
+                                  } }
+                        origin.y: { switch(orientationAngle) {
+                            case 270:
+                                return notificationWindow.width / 2
+                            case 180:
+                            case 90:
+                                return notificationWindow.height / 2
+                            default:
+                                return 0
+                            } }
+                        angle: {
+                            switch (orientationAngle) {
+                                case undefined:
+                                case 0:
+                                    return 0;
+                                case 180:
+                                    return -180;
+                                case 90:
+                                    return -90;
+                                case 270:
+                                    return 90;
+                            }
+                        }
+                    }
+
+
+
 
                 scale: 0.7 + 0.3 * lockScreen.openingState
                 opacity: lockScreen.openingState
