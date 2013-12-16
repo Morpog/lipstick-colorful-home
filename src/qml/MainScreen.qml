@@ -58,7 +58,7 @@ PageStackWindow {
             // Pager for swiping between different pages of the home screen
             Pager {
                 id: pager
-                property bool isPortrait: (orientationAngle == 90 || orientationAngle == 270)
+                property bool isPortrait: (orientationAngle == 270 || orientationAngle == 90)
                     transform: Rotation {
                         origin.x: { switch(orientationAngle) {
                                   case 180:
